@@ -23,7 +23,10 @@ function attachVoiceSocket(io) {
   };
 
   io.on("connection", (socket) => {
+    console.log(`[Socket] Client connected: ${socket.id}`);
+
     socket.on("voice:join", ({ roomCode, userId, username }) => {
+      console.log(`[Socket] voice:join roomCode=${roomCode} userId=${userId} username=${username}`);
       if (!roomCode || !userId) return;
 
       const room = getRoom(roomCode);
@@ -59,11 +62,13 @@ function attachVoiceSocket(io) {
 
     // WebRTC signaling
     socket.on("voice:rtc-offer", ({ roomCode, fromUserId, toUserId, sdp }) => {
+      console.log(`[Socket] rtc-offer roomCode=${roomCode} from=${fromUserId} to=${toUserId}`);
       if (!roomCode || !fromUserId || !toUserId || !sdp) return;
       relayToUser(roomCode, toUserId, "voice:rtc-offer", { fromUserId, sdp });
     });
 
     socket.on("voice:rtc-answer", ({ roomCode, fromUserId, toUserId, sdp }) => {
+      console.log(`[Socket] rtc-answer roomCode=${roomCode} from=${fromUserId} to=${toUserId}`);
       if (!roomCode || !fromUserId || !toUserId || !sdp) return;
       relayToUser(roomCode, toUserId, "voice:rtc-answer", { fromUserId, sdp });
     });
@@ -71,6 +76,7 @@ function attachVoiceSocket(io) {
     socket.on(
       "voice:rtc-ice",
       ({ roomCode, fromUserId, toUserId, candidate }) => {
+        console.log(`[Socket] rtc-ice roomCode=${roomCode} from=${fromUserId} to=${toUserId}`);
         if (!roomCode || !fromUserId || !toUserId || !candidate) return;
         relayToUser(roomCode, toUserId, "voice:rtc-ice", {
           fromUserId,
@@ -80,6 +86,7 @@ function attachVoiceSocket(io) {
     );
 
     const handleLeave = (roomCode, userId) => {
+      console.log(`[Socket] handleLeave roomCode=${roomCode} userId=${userId}`);
       if (!roomCode || !userId) return;
       socket.leave(`voice:${roomCode}`);
       removePeer(roomCode, userId);
@@ -95,6 +102,7 @@ function attachVoiceSocket(io) {
 
     socket.on("disconnect", () => {
       const { roomCode, userId } = socket.data;
+      console.log(`[Socket] Client disconnected: ${socket.id} roomCode=${roomCode} userId=${userId}`);
       if (roomCode && userId) handleLeave(roomCode, userId);
     });
   });
