@@ -19,7 +19,7 @@ import {
 // ─── Server config ─────────────────────────────────────────────────────────────
 // If running on a physical device, replace with your PC's local IP address
 // e.g. 'http://10.0.2.2:3001'
-export const API_BASE = "http://10.0.2.2:3001";
+export const API_BASE = "https://imposter-app-yznj.onrender.com";
 export const TOKEN_KEY = "imposter_auth_token";
 
 const withHostId = (room: GameRoom): GameRoom => {
