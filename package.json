@@ -1,0 +1,39 @@
+{
+  "name": "imposter-app",
+  "main": "index.js",
+  "version": "1.0.0",
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^3.1.1",
+    "@react-native-community/netinfo": "^10.0.0",
+    "lucide-react-native": "^1.17.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-linear-gradient": "^2.6.2",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
+    "react-native-webrtc": "^124.0.7",
+    "react-native-worklets": "0.5.1",
+    "socket.io-client": "^4.8.3"
+  },
+  "devDependencies": {
+    "@react-native-community/cli": "^20.1.3",
+    "@react-native/babel-preset": "^0.85.3",
+    "@react-native/metro-config": "^0.85.3",
+    "@types/react": "~19.1.10",
+    "babel-plugin-module-resolver": "^5.0.3",
+    "eslint": "^10.4.1",
+    "metro-react-native-babel-preset": "^0.77.0",
+    "typescript": "~5.9.2"
+  },
+  "scripts": {
+    "start": "npx react-native start",
+    "android": "npx react-native run-android",
+    "ios": "npx react-native run-ios",
+    "lint": "npx eslint ."
+  },
+  "private": true
+}
